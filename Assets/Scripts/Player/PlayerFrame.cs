@@ -13,6 +13,7 @@ public readonly struct PlayerFrame
     public readonly bool dashPressed; // Indicates whether the dash button was pressed during the current frame, allowing for dash input to be processed in the same frame it was pressed.
     public readonly float deltaTime; // Delta time for the current frame, allowing for time-based calculations to be performed accurately based on the time elapsed since the last frame.
 
+    // Constructor to initialize all fields of the PlayerFrame struct.
     public PlayerFrame(PlayerMotor2D motor, PlayerSensors2D sensors, PlayerFlags flags,
         float inputX, float inputY, bool glide, bool dashPressed, float deltaTime)
     {
