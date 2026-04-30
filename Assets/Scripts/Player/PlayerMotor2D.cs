@@ -16,6 +16,21 @@ public class PlayerMotor2D : MonoBehaviour
     // Awake is called when the script instance is being loaded. It initializes the RB property by getting the Rigidbody2D component attached to the same GameObject.
     private void Awake() => RB = GetComponent<Rigidbody2D>();
 
+    // External velocity parameter that can be set by other scripts to apply additional forces or movement to the player. This can be used for things like knockback, dashing, or other special movements.
+    private Vector2 externalVelocity;
+
+    public void AddExternalVelocity(Vector2 velocity) => externalVelocity += velocity; // Method to add external velocity, allowing other scripts to contribute to the player's movement.
+
+    public void ApplyAndClearExternalVelocity()
+    {
+        if (externalVelocity != Vector2.zero)
+        {
+            RB.velocity += externalVelocity; // Apply the accumulated external velocity as an impulse force to the Rigidbody2D.
+        }
+
+        externalVelocity = Vector2.zero; // Clear the external velocity after applying it to prevent it from being applied multiple times.
+    }
+
     // FixedUpdate used to calculate and apply gravity to the player. It multiplies the gravity by the gravityMultiplier and applies it as a force to the Rigidbody2D component. 
     private void FixedUpdate()
     {

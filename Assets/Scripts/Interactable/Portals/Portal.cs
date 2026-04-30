@@ -25,7 +25,6 @@ public class Portal : MonoBehaviour
     // Method to set the channel of the portal, which will trigger an update in the registry
     public void SetChannel(int newChannel)
     {
-        Debug.Log($"Changing channel of portal {portalId} from {channel} to {newChannel}");
         if (newChannel == channel) return;
 
         int oldChannel = channel;
@@ -36,7 +35,6 @@ public class Portal : MonoBehaviour
         // Hook to visual update of the portal (e.g. change color) can be added here
         var visual = GetComponent<PortalVisual>();
         if (visual) visual.Apply(channel);
-        Debug.Log($"Changing channel of portal {portalId} from {channel} to {newChannel}");
     }
 
     // OnTriggerEnter is called when another collider enters the portal's trigger collider

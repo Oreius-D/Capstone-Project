@@ -66,5 +66,8 @@ public class PlayerSensors2D : MonoBehaviour
 
         IsWallStickingRight = Physics2D.Raycast(rightWallTopRayOrigin, Vector2.right, groundRayLength, wallStickLayerMask) ||
                              Physics2D.Raycast(rightWallBottomRayOrigin, Vector2.right, groundRayLength, wallStickLayerMask);
+
+        //if (!IsGrounded)
+          //  Debug.Log($"StickyL={IsWallStickingLeft} StickyR={IsWallStickingRight} (hitmask={wallStickLayerMask.value})");
     }
 }

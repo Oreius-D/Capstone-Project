@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour
 
         // Consume the dash input after processing it, so it is only true for one frame.
         dashPressed = false;
+
+        motor.ApplyAndClearExternalVelocity();
     }
 
     // Method to process tick-based movement. It will call the movement overrides in the order they are provided, and if no override is provided, it will apply the default movement behavior.

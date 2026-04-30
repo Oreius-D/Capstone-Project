@@ -16,6 +16,17 @@ public class WallStickOverride : MonoBehaviour, IMovementOverride
     // Method to try to override the movement. It checks if the player is stuck and applies climbing movement if so.
     public bool TryOverrideMovement(in PlayerFrame currentFrame)
     {
+        bool stickyL = currentFrame.sensors.IsWallStickingLeft;
+        bool stickyR = currentFrame.sensors.IsWallStickingRight;
+
+        if (!stickyL && !stickyR)
+        {
+            stuck = false;
+            return false;
+        }
+
+        //Debug.Log($"WALLSTICK called. stickyL={currentFrame.sensors.IsWallStickingLeft} stickyR={currentFrame.sensors.IsWallStickingRight}");
+
         // If the player is in Lift state, don't allow wall stick
         if (currentFrame.flags.InLiftZone) return false;
 
