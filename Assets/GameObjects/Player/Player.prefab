@@ -16,6 +16,11 @@ GameObject:
   - component: {fileID: 464264516604876291}
   - component: {fileID: 4979341394677611182}
   - component: {fileID: 7522402825654575042}
+  - component: {fileID: 7738334430960278553}
+  - component: {fileID: 7654730756751655233}
+  - component: {fileID: 6696308127742124115}
+  - component: {fileID: 5665604538401926995}
+  - component: {fileID: 8146383015830458811}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -106,7 +111,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 562a1321923f8e84681dbdadbd119b40, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -225,11 +230,81 @@ MonoBehaviour:
   sensors: {fileID: 464264516604876291}
   flags: {fileID: 4979341394677611182}
   behaviors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7654730756751655233}
+  - {fileID: 6696308127742124115}
+  - {fileID: 5665604538401926995}
+  - {fileID: 8146383015830458811}
   maxSpeed: 5
   acceleration: 10
   deceleration: 10
   airMovement: 5
+--- !u!114 &7738334430960278553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988348011447424521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d596d9512b3b04ea793bd10ac655c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportCooldown: 1
+--- !u!114 &7654730756751655233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988348011447424521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c7847e6e7628f4993a66431de1f41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liftSpeed: 5
+  epsilon: 0.1
+--- !u!114 &6696308127742124115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988348011447424521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2dd1f60632a8ab40b9802a37980e559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashImpulse: 20
+  restuckAvoid: 1
+--- !u!114 &5665604538401926995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988348011447424521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498b178de9d7ea34d9b3a78d988aa47f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 3
+  detachTreshold: 0.5
+  dash: {fileID: 6696308127742124115}
+--- !u!114 &8146383015830458811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988348011447424521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b94b2260d506544894381f078ea94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glideGravityMultiplier: 0.5
+  maxFallSpeed: 2.5
