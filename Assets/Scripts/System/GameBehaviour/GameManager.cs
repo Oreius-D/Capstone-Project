@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 
         IsDashUnlocked = unlockedNow;
         OnDashUnlock?.Invoke(IsDashUnlocked);
+
+        Debug.Log($"[GameManager] Scene={scene.name} index={scene.buildIndex} DashUnlocked={IsDashUnlocked}");
     }
 
     // OnDestroy method to clean up the singleton instance when the GameManager is destroyed, ensuring that the Instance property is set to null to prevent references to a destroyed object.

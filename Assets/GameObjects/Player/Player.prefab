@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2dd1f60632a8ab40b9802a37980e559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashImpulse: 20
+  dashImpulse: 60
   restuckAvoid: 1
 --- !u!114 &5665604538401926995
 MonoBehaviour:

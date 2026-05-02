@@ -40,24 +40,36 @@ public class DashHud : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         BindToPlayerFlags();
-        UpdateDashVisibility();
     }
 
     // OnEnable method that subscribes to the onDashChargeAdded event of the PlayerFlags component. This ensures that the DashHud will update its display whenever the player's dash charge state changes.
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        GameManager.OnDashUnlock += OnDashUnlockChanged;
         BindToPlayerFlags();
-        UpdateDashVisibility();
+
+        if (GameManager.Instance != null)
+            OnDashUnlockChanged(GameManager.Instance.IsDashUnlocked);
+        else
+            OnDashUnlockChanged(false);
     }
 
     // OnDisable method that unsubscribes from the onDashChargeAdded event of the PlayerFlags component. This prevents the DashHud from trying to update its display when it is disabled, which could lead to errors if the PlayerFlags component is still active.
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameManager.OnDashUnlock -= OnDashUnlockChanged;
 
         if (playerFlags != null)
             playerFlags.onDashChargeAdded -= HandleDashChanged;
+    }
+
+    private void OnDashUnlockChanged(bool isUnlocked)
+    {
+        if (dashRoot != null)
+            dashRoot.SetActive(isUnlocked); // Enable or disable the entire dash HUD based on whether the dash ability is unlocked, ensuring that the HUD only appears when the player has access to the dash ability.
     }
 
     // HandleDashChanged method that takes a boolean parameter indicating whether the player has a dash charge available (true) or not (false). It updates the alpha of the dash icon and the active state of the dash text based on whether the player can dash.
@@ -71,13 +83,5 @@ public class DashHud : MonoBehaviour
             color.a = canDash ? enableAlpha : disableAlpha; // Set the alpha of the color based on whether the player can dash (enableAlpha if canDash is true, disableAlpha if canDash is false).
             dashIcon.color = color; // Apply the updated color back to the dash icon to visually indicate whether the dash is available or not.
         }
-    }
-
-    private void UpdateDashVisibility()
-    {
-        bool show = GameManager.Instance != null && GameManager.Instance.IsDashUnlocked;
-
-        if (dashRoot != null)
-            dashRoot.SetActive(show);
     }
 }
