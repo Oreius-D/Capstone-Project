@@ -83,11 +83,24 @@ public class GameManager : MonoBehaviour
     public void Unlock() => locked = false;
 
     // Method to restart the current level
-    public void RestartLevel()
+    public void RestartLevel(float delay = 0f)
     {
         SetPause(false); // Ensure the game is unpaused when restarting the level, allowing for a fresh start without any pause state affecting gameplay.
         if (locked) return;
         Lock();
+        if (delay <= 0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            StartCoroutine(RestartRoutine(delay));
+        }
+    }
+
+    private IEnumerator RestartRoutine(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

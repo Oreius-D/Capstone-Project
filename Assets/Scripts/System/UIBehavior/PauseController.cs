@@ -7,6 +7,7 @@ public class PauseController : MonoBehaviour
     // Parameter for the pause menu UI, allowing the script to reference the pause menu GameObject and control its visibility when pausing and unpausing the game.
     [Header("UI Elements")]
     [SerializeField] private GameObject pauseUI; // Reference to the pause menu GameObject, which can be set in the inspector.
+    [SerializeField] private GameObject settingsPanel;
 
     // Start method to initialize the pause menu state, ensuring that the pause menu is hidden when the game starts.
     private void Start()
@@ -40,11 +41,16 @@ public class PauseController : MonoBehaviour
         if (pauseUI) pauseUI.SetActive(false); // Hide the pause menu when resuming the game, ensuring that it is not visible while gameplay is active.
     }
 
-    // Restart method to restart the current level, allowing the player to restart the level from the pause menu.
-    public void RestartLevel()
+    // Open the settings panel
+    public void OpenSettings(bool isOpen)
     {
-        if (GameManager.Instance == null) return; // Ensure that the GameManager instance exists before attempting to restart the level, preventing potential null reference errors.
-        GameManager.Instance.RestartLevel(); // Call the RestartLevel method on the GameManager instance to restart the current level, allowing the player to quickly restart from the pause menu.
+        if (settingsPanel) settingsPanel.SetActive(isOpen);
+    }
+
+    // Close settings and level select panels
+    public void ClosePanels()
+    {
+        if (settingsPanel) settingsPanel.SetActive(false);
     }
 
     // MainMenu method to return to the main menu, allowing the player to return to the main menu from the pause menu.

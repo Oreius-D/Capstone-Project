@@ -10,7 +10,7 @@ public class LiftZone : MonoBehaviour
     // On trigger enter, call player flags to enter lift zone with the top point y position
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Player entered lift zone");
+        //Debug.Log("Player entered lift zone");
         // Fetch player flags component from the other collider
         var playerFlags = other.GetComponent<PlayerFlags>();
         if (!playerFlags) return;
@@ -22,7 +22,7 @@ public class LiftZone : MonoBehaviour
     // On trigger exit, call player flags to exit lift zone
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Player exited lift zone");
+        //Debug.Log("Player exited lift zone");
         // Fetch player flags component from the other collider
         var playerFlags = other.GetComponent<PlayerFlags>();
         if (!playerFlags) return;

@@ -6,7 +6,7 @@ public class DashOverride : MonoBehaviour, IMovementOverride
 {
     // variables for dash impulse, vertical movement change and treshold to avoid immediate re-stucking on walls
     [SerializeField] private float dashImpulse = 20f;
-    [SerializeField] private float restuckAvoid = 1f;
+    [SerializeField] private float restuckAvoid = 0.06f;
 
     // Variable to track how long to avoid restucking after a dash
     private float blockStuckUntil;
@@ -30,6 +30,10 @@ public class DashOverride : MonoBehaviour, IMovementOverride
 
         // Apply dash impulse
         currentFrame.motor.AddImpulse(new Vector2(direction * dashImpulse, 0f));
+
+        // Play dash animation if the player has an animation controller
+        var anim = GetComponent<PlayerAnimationController>();
+        if (anim) anim.PlayDash();
 
         // Set blockStuckUntil to current time plus restuckAvoid to avoid immediate restucking on walls
         blockStuckUntil = Time.time + restuckAvoid;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -70,11 +70,13 @@ public class MovingPlatform2D : MonoBehaviour, IReciever
         rb.MovePosition(newPosition);
 
         // Calculate delta movement for passengers
-        DeltaMovement = newPosition - lastPosition;
-        lastPosition = newPosition;
+        DeltaMovement = newPosition - currentPosition;
+        Debug.Log($"PLATFORM delta={DeltaMovement}");
+
+        lastPosition = newPosition; // ok tenerlo, ma ora delta è corretto a frame
 
         // Check if the platform has reached the target waypoint
-        if(Vector2.Distance(newPosition, targetWaypoint) < 0.001f)
+        if (Vector2.Distance(newPosition, targetWaypoint) < 0.001f)
         {
             waitTimer = waitTime;
             AdvanceIndex();

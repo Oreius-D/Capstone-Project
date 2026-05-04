@@ -42,6 +42,13 @@ public class MenuController : MonoBehaviour
         if (levelSelectPanel) levelSelectPanel.SetActive(isOpen);
     }
 
+    // Close settings and level select panels
+    public void ClosePanels()
+    {
+        if (settingsPanel) settingsPanel.SetActive(false);
+        if (levelSelectPanel) levelSelectPanel.SetActive(false);
+    }
+
     // Quit the game
     public void QuitGame()
     {
